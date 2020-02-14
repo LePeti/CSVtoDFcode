@@ -1,17 +1,19 @@
 Package: CSVtoDFcode
-Title: What the Package Does (one line, title case)
+Title: Simply create test data by generating DataFrame R code from a CSV
+Description: Use your preferred visual tabular data manipulation app (e.g. Excel, Numbers, etc.) and/or your clipboard to simply generate data frame or data.table code for tests or examples.
 Version: 0.0.0.9000
-Authors@R: person("First", "Last", email = "first.last@example.com", role = c("aut", "cre"))
-Description: What the package does (one paragraph).
-Depends: R (>= 3.5.1)
-License: What license is it under?
-Encoding: UTF-8
-LazyData: true
-Imports: 
+Authors@R: c(
+    person("Peter", "Lukacs", email = "lukacs.peter.andras@gmail.com", role = c("aut", "cre")),
+    person("Tamas", "Koncz", email = "t.koncz@gmail.com", role = "aut"))
+BugReports: https://github.com/LePeti/CSVtoDFcode/issues
+Imports:
     clipr,
     utils
-Suggests: 
+Suggests:
     testthat,
     here,
     data.table
 RoxygenNote: 6.1.1
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true

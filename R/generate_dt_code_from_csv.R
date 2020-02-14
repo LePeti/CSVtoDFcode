@@ -32,7 +32,7 @@ generateDfCodeFromCsv <- function(csv_file_path = NULL,
             stringsAsFactors = FALSE
         )
     } else {
-        data <- read.csv(csv_file_path, sep = ",", stringsAsFactors = FALSE)
+        data <- utils::read.csv(csv_file_path, sep = ",", stringsAsFactors = FALSE)
     }
 
     object_type <- match.arg(object_type)

@@ -2,7 +2,8 @@ context("test-generate_dt_code_from_csv")
 
 describe("generateDfCodeFromCsv()", {
     it("returns code for two numeric columns", {
-        csv_path <- here::here("inst", "two_num_col.csv")
+        csv_path <- system.file("extdata", "two_num_col.csv", package = "CSVtoDFcode")
+        print(csv_path)
         csv_df <- read.csv(csv_path)
 
         expect_equal(
@@ -12,7 +13,7 @@ describe("generateDfCodeFromCsv()", {
     })
 
     it("can read the csv data from the clipboard", {
-        csv_path <- here::here("inst", "two_num_col.csv")
+        csv_path <- system.file("extdata", "two_num_col.csv", package = "CSVtoDFcode")
         csv_df <- read.csv(csv_path)
         clipr::write_clip(csv_df, allow_non_interactive = TRUE)
 
@@ -23,7 +24,7 @@ describe("generateDfCodeFromCsv()", {
     })
 
     it("can generate data.table too", {
-        csv_path <- here::here("inst", "two_num_col.csv")
+        csv_path <- system.file("extdata", "two_num_col.csv", package = "CSVtoDFcode")
         csv_df <- read.csv(csv_path)
 
         csv_code <- generateDfCodeFromCsv(csv_path, object_type = "data.table")
@@ -35,7 +36,7 @@ describe("generateDfCodeFromCsv()", {
     })
 
     it("returns a nicely formatted message", {
-        csv_path <- here::here("inst", "two_num_col.csv")
+        csv_path <- system.file("extdata", "two_num_col.csv", package = "CSVtoDFcode")
         csv_df <- read.csv(csv_path)
 
         expected_csv_code_message <- (
@@ -49,7 +50,7 @@ describe("generateDfCodeFromCsv()", {
     })
 
     it("returns unformatted return value", {
-        csv_path <- here::here("inst", "two_num_col.csv")
+        csv_path <- system.file("extdata", "two_num_col.csv", package = "CSVtoDFcode")
         csv_df <- read.csv(csv_path)
 
         expected_csv_code <- "data.frame(foo = c(1, 2, 3), bar = c(4, 5, 6))"
@@ -61,7 +62,7 @@ describe("generateDfCodeFromCsv()", {
     })
 
     it("returns code for simple text columns", {
-        csv_path <- here::here("inst", "simple_text_and_num_col.csv")
+        csv_path <- system.file("extdata", "simple_text_and_num_col.csv", package = "CSVtoDFcode")
         csv_df <- read.csv(csv_path)
 
         csv_code <- generateDfCodeFromCsv(csv_path)
@@ -73,7 +74,7 @@ describe("generateDfCodeFromCsv()", {
     })
 
     it("returns code for complex text columns", {
-        csv_path <- here::here("inst", "complex_text_and_num_col.csv")
+        csv_path <- system.file("extdata", "complex_text_and_num_col.csv", package = "CSVtoDFcode")
         csv_df <- read.csv(csv_path)
 
         csv_code <- generateDfCodeFromCsv(csv_path)
@@ -85,7 +86,7 @@ describe("generateDfCodeFromCsv()", {
     })
 
     it("represents missing values as NAs for num cols", {
-        csv_path <- here::here("inst", "complex_text_and_num_col_w_missing_num_value.csv")
+        csv_path <- system.file("extdata", "complex_text_and_num_col_w_missing_num_value.csv", package = "CSVtoDFcode")
         csv_df <- read.csv(csv_path)
 
         csv_code <- generateDfCodeFromCsv(csv_path)
@@ -97,7 +98,7 @@ describe("generateDfCodeFromCsv()", {
     })
 
     it("represents missing values as empty string for string cols", {
-        csv_path <- here::here("inst", "complex_text_and_num_col_w_missing_char_value.csv")
+        csv_path <- system.file("extdata", "complex_text_and_num_col_w_missing_char_value.csv", package = "CSVtoDFcode")
         csv_df <- read.csv(csv_path)
 
         csv_code <- generateDfCodeFromCsv(csv_path)
