@@ -71,4 +71,40 @@ describe("generateDfCodeFromCsv()", {
             csv_df
         )
     })
+
+    it("returns code for complex text columns", {
+        csv_path <- here::here("inst", "complex_text_and_num_col.csv")
+        csv_df <- read.csv(csv_path)
+
+        csv_code <- generateDfCodeFromCsv(csv_path)
+
+        expect_equal(
+            eval(parse(text = csv_code)),
+            csv_df
+        )
+    })
+
+    it("represents missing values as NAs for num cols", {
+        csv_path <- here::here("inst", "complex_text_and_num_col_w_missing_num_value.csv")
+        csv_df <- read.csv(csv_path)
+
+        csv_code <- generateDfCodeFromCsv(csv_path)
+
+        expect_equal(
+            eval(parse(text = csv_code)),
+            csv_df
+        )
+    })
+
+    it("represents missing values as empty string for string cols", {
+        csv_path <- here::here("inst", "complex_text_and_num_col_w_missing_char_value.csv")
+        csv_df <- read.csv(csv_path)
+
+        csv_code <- generateDfCodeFromCsv(csv_path)
+
+        expect_equal(
+            eval(parse(text = csv_code)),
+            csv_df
+        )
+    })
 })
