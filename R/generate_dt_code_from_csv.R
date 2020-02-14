@@ -1,4 +1,4 @@
-generateDfCodeFromCsv <- function(data_path = NULL) {
+generateDfCodeFromCsv <- function(data_path = NULL, table_type = "data.frame") {
     if (is.null(data_path)) {
         data <- clipr::read_clip_tbl()
     } else {
@@ -6,21 +6,28 @@ generateDfCodeFromCsv <- function(data_path = NULL) {
     }
 
     col_names <- names(data)
-    bar <- lapply(col_names, function(x) generateVectorDefinitionStringForOneColumn(x, data[[x]]))
-    data_code <- paste0(
-        "data.frame(",
-            paste(bar, collapse = ", "),
-        ")"
+    col_code <- lapply(col_names, function(x) generateVectorCodeFromOneColumn(x, data[[x]]))
+
+    data_code_for_message <- paste0(
+        table_type, "(\n    ",
+            paste(col_code, collapse = ",\n    "),
+        "\n)"
     )
 
-    clipr::write_clip(data_code, allow_non_interactive = TRUE)
-    cat(data_code)
+    clipr::write_clip(data_code_for_message, allow_non_interactive = TRUE)
+    message(data_code_for_message)
+
+    data_code <- paste0(
+        table_type, "(",
+            paste(col_code, collapse = ", "),
+        ")"
+    )
     invisible(data_code)
 }
 
-# generateDfCodeFromCsv("inst/one_num_col.csv")
+# generateDfCodeFromCsv("inst/two_num_col.csv")
 # generateDfCodeFromCsv()
 
-foo <- function(col_name, col_values) {
+generateVectorCodeFromOneColumn <- function(col_name, col_values) {
     paste0(col_name, " = c(", paste(col_values, collapse = ", "), ")")
 }
