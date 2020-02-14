@@ -1,6 +1,8 @@
 generateDfCodeFromCsv <- function(data_path = NULL, table_type = "data.frame") {
     if (is.null(data_path)) {
-        data <- clipr::read_clip_tbl()
+        data <- clipr::read_clip_tbl(
+            x = clipr::read_clip(allow_non_interactive = TRUE)
+        )
     } else {
         data <- read.csv(data_path, sep = ",")
     }

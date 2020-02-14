@@ -13,6 +13,19 @@ describe("generateDfCodeFromCsv()", {
         )
     })
 
+    it("can read the csv data from the clipboard", {
+        csv_path <- here::here("inst", "two_num_col.csv")
+        csv_df <- read.csv(csv_path)
+        clipr::write_clip(csv_df, allow_non_interactive = TRUE)
+
+        csv_code <- generateDfCodeFromCsv()
+
+        expect_equal(
+            eval(parse(text = csv_code)),
+            csv_df
+        )
+    })
+
     it("can generate data.table too", {
         csv_path <- here::here("inst", "two_num_col.csv")
         csv_df <- read.csv(csv_path)
