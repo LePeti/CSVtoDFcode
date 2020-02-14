@@ -5,10 +5,8 @@ describe("generateDfCodeFromCsv()", {
         csv_path <- here::here("inst", "two_num_col.csv")
         csv_df <- read.csv(csv_path)
 
-        csv_code <- generateDfCodeFromCsv(csv_path)
-
         expect_equal(
-            eval(parse(text = csv_code)),
+            eval(parse(text = generateDfCodeFromCsv(csv_path))),
             csv_df
         )
     })
@@ -18,10 +16,8 @@ describe("generateDfCodeFromCsv()", {
         csv_df <- read.csv(csv_path)
         clipr::write_clip(csv_df, allow_non_interactive = TRUE)
 
-        csv_code <- generateDfCodeFromCsv()
-
         expect_equal(
-            eval(parse(text = csv_code)),
+            eval(parse(text = generateDfCodeFromCsv())),
             csv_df
         )
     })
