@@ -38,7 +38,7 @@ describe("generateDfCodeFromCsv()", {
         )
     })
 
-    it("output message is nicely formatted", {
+    it("returns a nicely formatted message", {
         csv_path <- here::here("inst", "two_num_col.csv")
         csv_df <- read.csv(csv_path)
 
@@ -52,7 +52,7 @@ describe("generateDfCodeFromCsv()", {
         )
     })
 
-    it("return value is not formatted", {
+    it("returns unformatted return value", {
         csv_path <- here::here("inst", "two_num_col.csv")
         csv_df <- read.csv(csv_path)
 
