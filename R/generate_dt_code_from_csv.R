@@ -14,7 +14,11 @@
 #'        data.frame(foo = c(1, 2, 3), bar = c("four", 5, "six")),
 #'        csv_path, row.names = FALSE
 #'    )
-#'    generateDfCodeFromCsv(csv_path)
+#'    foo <- generateDfCodeFromCsv(csv_path)
+#'    bar <- generateDfCodeFromCsv(csv_path, object_type = "data.table")
+#'
+#'    foo
+#'    bar
 #'
 #'    unlink(csv_path)
 #' }
