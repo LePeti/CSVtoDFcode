@@ -26,7 +26,7 @@ describe("generateDfCodeFromCsv()", {
         csv_path <- here::here("inst", "two_num_col.csv")
         csv_df <- read.csv(csv_path)
 
-        csv_code <- generateDfCodeFromCsv(csv_path, table_type = "data.table")
+        csv_code <- generateDfCodeFromCsv(csv_path, object_type = "data.table")
 
         expect_equal(
             class(eval(parse(text = paste0("data.table::", csv_code))))[1],
