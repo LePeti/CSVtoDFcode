@@ -1,10 +1,11 @@
 generateDfCodeFromCsv <- function(data_path = NULL, table_type = "data.frame") {
     if (is.null(data_path)) {
         data <- clipr::read_clip_tbl(
-            x = clipr::read_clip(allow_non_interactive = TRUE)
+            x = clipr::read_clip(allow_non_interactive = TRUE),
+            stringsAsFactors = FALSE
         )
     } else {
-        data <- read.csv(data_path, sep = ",")
+        data <- read.csv(data_path, sep = ",", stringsAsFactors = FALSE)
     }
 
     col_names <- names(data)
@@ -27,9 +28,21 @@ generateDfCodeFromCsv <- function(data_path = NULL, table_type = "data.frame") {
     invisible(data_code)
 }
 
-# generateDfCodeFromCsv("inst/two_num_col.csv")
-# generateDfCodeFromCsv()
-
 generateVectorCodeFromOneColumn <- function(col_name, col_values) {
-    paste0(col_name, " = c(", paste(col_values, collapse = ", "), ")")
+    paste0(
+        col_name,
+        " = c(",
+        paste(addQuotationAroundCharacterVector(col_values), collapse = ", "),
+        ")"
+    )
 }
+
+addQuotationAroundCharacterVector <- function(x) {
+    sapply(
+        x, function(y) ifelse(is.character(y), paste0('"', y, '"'), y),
+        USE.NAMES = FALSE
+    )
+}
+
+# generateDfCodeFromCsv("inst/simple_text_and_num_col.csv")
+# generateDfCodeFromCsv()
