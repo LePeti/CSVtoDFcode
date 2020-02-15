@@ -4,8 +4,10 @@
 \alias{generateDfCodeFromCsv}
 \title{Generate data.frame code from CSV}
 \usage{
-generateDfCodeFromCsv(csv_file_path = NULL,
-  object_type = c("data.frame", "data.table"))
+generateDfCodeFromCsv(
+  csv_file_path = NULL,
+  object_type = c("data.frame", "data.table")
+)
 }
 \arguments{
 \item{csv_file_path}{character, file path to the .csv file}

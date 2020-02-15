@@ -3,7 +3,6 @@ context("test-generate_dt_code_from_csv")
 describe("generateDfCodeFromCsv()", {
     it("returns code for two numeric columns", {
         csv_path <- system.file("extdata", "two_num_col.csv", package = "CSVtoDFcode")
-        print(csv_path)
         csv_df <- read.csv(csv_path)
 
         expect_equal(
