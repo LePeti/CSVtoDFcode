@@ -6,7 +6,7 @@ Simply create test data by generating data frame R code from a CSV: Use your pre
   
   + Tables are hard to create in a text editor
   + Test cases and test data are hard to think about when represented as code
-  + Test data generator packages don't provide you the table generating code (coming soon)
+  + Test data generator packages don't provide you with the table generating code (coming soon)
 
 ## How does this package solve it?
 
