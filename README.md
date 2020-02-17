@@ -16,5 +16,5 @@ Simply create test data by generating data frame R code from a CSV: Use your pre
   + Copy it into your test
 
 ## How to install
-    
-    + Install from github: `devtools::install_github("https://github.com/LePeti/CSVtoDFcode")`
+  
+  + Install from github: `devtools::install_github("https://github.com/LePeti/CSVtoDFcode")`
